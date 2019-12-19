@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 
 man = 'https://kma.kkbox.com/charts/daily/song?cate=297'
-#mantry = 'https://oia.ntu.edu.tw/ch/outgoing/school.list'
 eng = 'https://kma.kkbox.com/charts/daily/song?cate=390'
 jap = 'https://kma.kkbox.com/charts/daily/song?cate=308'
 kor = 'https://kma.kkbox.com/charts/daily/song?cate=314'
@@ -11,15 +10,13 @@ can = 'https://kma.kkbox.com/charts/daily/song?cate=320'
 
 
 r = requests.get(man)
-
 soup = BeautifulSoup(r.text, 'html.parser')
-
 attr = {'name': 'description'}
 
 rank = soup.find_all('meta', attrs = attr)     # 找到html裡面的meta標籤
 rank_str = rank[0]['content']                  # 找到排行榜的部分
 rank_str = rank_str[(rank_str.find('：')+1):]  # 只抓取歌單的部分
-rank_list = rank_str.split('、')       # 把str轉成list
+rank_list = rank_str.split('、')               # 把str轉成list
 
 rank_songtitle = []
 rank_singer = []
@@ -49,6 +46,3 @@ for i in range(5):
 #    print(rank_singer[i])
 #    print(rank_songtitle[i])
 #    print('-----------------')
-
-print(rank_singer)
-print(rank_songtitle)
