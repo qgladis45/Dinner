@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import tkinter as tk
 
 man = 'https://kma.kkbox.com/charts/daily/song?cate=297'
 eng = 'https://kma.kkbox.com/charts/daily/song?cate=390'
@@ -46,3 +47,10 @@ for i in range(5):
 #    print(rank_singer[i])
 #    print(rank_songtitle[i])
 #    print('-----------------')
+
+'''視窗'''
+ranking = tk.Tk()
+ranking.title("KKbox Ranking")
+ranking.geometry('500x720')  # (長x寬)
+
+ranking.mainloop()
