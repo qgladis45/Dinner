@@ -56,6 +56,7 @@ class Ranking(tk.Frame):
         tk.Frame.__init__(self)
         self.grid()
         self.buttons()
+        self.click_man()
     
     def buttons(self):
         self.manbut = tk.Button(self, text='華語', command=self.click_man)
