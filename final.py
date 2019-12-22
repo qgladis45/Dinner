@@ -99,7 +99,7 @@ class Ranking(tk.Frame):
         webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + str(rank_songtitle[0]) + '+' + str(rank_singer[0]))
     
     def click_eng(self):
-        self.eng1 = tk.Button(self, text='英語1')
+        self.eng1 = tk.Button(self, text='英語1', command=self.click_eng1)
         self.eng1.grid(row=1, column=1, columnspan=6)
         self.eng2 = tk.Button(self, text='英語2')
         self.eng2.grid(row=2, column=1, columnspan=6)
@@ -109,8 +109,13 @@ class Ranking(tk.Frame):
         self.eng4.grid(row=4, column=1, columnspan=6)
         self.eng5 = tk.Button(self, text='英語5')
         self.eng5.grid(row=5, column=1, columnspan=6)
+    
+    def click_eng1(self):
+        #webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + str(rank_songtitle[0]) + '+' + str(rank_singer[0]))
+        webbrowser.open_new_tab('https://www.youtube.com')
 
-    '''
+
+'''
     def click_jap(self):
         self.man1 = tk.Button(self, text='華語1')
         self.man1.grid(row=1, column=1, columnspan=6)
@@ -134,7 +139,7 @@ class Ranking(tk.Frame):
         self.man4.grid(row=4, column=1, columnspan=6)
         self.man5 = tk.Button(self, text='華語5')
         self.man5.grid(row=5, column=1, columnspan=6)
-    '''
+'''
 ranking = Ranking()
 ranking.master.title("KKbox Ranking")
 ranking.mainloop()
