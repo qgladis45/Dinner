@@ -22,7 +22,7 @@ rank_list = rank_str.split('、')               # 把str轉成list
 rank_songtitle = []
 rank_singer = []
 
-# print(rank_list)
+#print(rank_list)
 
 for i in rank_list:
     #rank = i.strip()
