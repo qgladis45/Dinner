@@ -11,10 +11,8 @@ man_rank = []
 eng_rank = []
 jap_rank = []
 kor_rank = []
-twn_rank = []
-can_rank = []
 
-for o in (man_rank, eng_rank, jap_rank, kor_rank, twn_rank, can_rank):
+for o in (man_rank, eng_rank, jap_rank, kor_rank):
     song_index += 1
     song_url = url + song_list[song_index]
 
@@ -48,6 +46,9 @@ for o in (man_rank, eng_rank, jap_rank, kor_rank, twn_rank, can_rank):
     for i in range(10):
         o[i] = o[i].strip()
 
+def click(song, singer):
+    webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + song + '+' + singer)
+
 
 '''視窗'''
 class Ranking(tk.Frame):
@@ -55,23 +56,20 @@ class Ranking(tk.Frame):
     def __init__(self):
         tk.Frame.__init__(self)
         self.grid()
-        self.buttons()
+        self.widgets()
         self.click_man()
-    
-    def buttons(self):
+
+    # 主題按鈕&名次
+    def widgets(self):
         self.manbut = tk.Button(self, text='華語', command=self.click_man)
         self.manbut.grid(row=0, column=0)
         self.engbut = tk.Button(self, text='西洋', command=self.click_eng)
         self.engbut.grid(row=0, column=1)
-        self.japbut = tk.Button(self, text='日語')
+        self.japbut = tk.Button(self, text='日語', command=self.click_jap)
         self.japbut.grid(row=0, column=2)
-        self.korbut = tk.Button(self, text='韓語')
+        self.korbut = tk.Button(self, text='韓語', command=self.click_kor)
         self.korbut.grid(row=0, column=3)
-        self.twnbut = tk.Button(self, text='台語')
-        self.twnbut.grid(row=0, column=4)
-        self.canbut = tk.Button(self, text='粵語')
-        self.canbut.grid(row=0, column=5)
-        
+
         self.rank1 = tk.Label(self, text='第一名')
         self.rank1.grid(row=1, column=0)
         self.rank2 = tk.Label(self, text='第二名')
@@ -83,63 +81,118 @@ class Ranking(tk.Frame):
         self.rank5 = tk.Label(self, text='第五名')
         self.rank5.grid(row=5, column=0)
 
+    '''華語'''
     def click_man(self):
         self.man1 = tk.Button(self, text=(man_rank[0]+man_rank[1]), command=self.click_man1)
         self.man1.grid(row=1, column=1, columnspan=6)
-        self.man2 = tk.Button(self, text=(man_rank[2]+man_rank[3]))
+        self.man2 = tk.Button(self, text=(man_rank[2]+man_rank[3]), command=self.click_man2)
         self.man2.grid(row=2, column=1, columnspan=6)
-        self.man3 = tk.Button(self, text=(man_rank[4]+man_rank[5]))
+        self.man3 = tk.Button(self, text=(man_rank[4]+man_rank[5]), command=self.click_man3)
         self.man3.grid(row=3, column=1, columnspan=6)
-        self.man4 = tk.Button(self, text=(man_rank[6]+man_rank[7]))
+        self.man4 = tk.Button(self, text=(man_rank[6]+man_rank[7]), command=self.click_man4)
         self.man4.grid(row=4, column=1, columnspan=6)
-        self.man5 = tk.Button(self, text=(man_rank[8]+man_rank[9]))
+        self.man5 = tk.Button(self, text=(man_rank[8]+man_rank[9]), command=self.click_man5)
         self.man5.grid(row=5, column=1, columnspan=6)
-        
+
     def click_man1(self):
-        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + str(man_rank[0]) + '+' + str(man_rank[1]))
-    
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + man_rank[0] + '+' + man_rank[1])
+
+    def click_man2(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + man_rank[2] + '+' + man_rank[3])
+
+    def click_man3(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + man_rank[4] + '+' + man_rank[5])
+
+    def click_man4(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + man_rank[6] + '+' + man_rank[7])
+
+    def click_man5(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + man_rank[8] + '+' + man_rank[9])
+
+    '''西洋'''
     def click_eng(self):
-        self.eng1 = tk.Button(self, text='英語1', command=self.click_eng1)
+        self.eng1 = tk.Button(self, text=(eng_rank[0]+eng_rank[1]), command=self.click_eng1)
         self.eng1.grid(row=1, column=1, columnspan=6)
-        self.eng2 = tk.Button(self, text='英語2')
+        self.eng2 = tk.Button(self, text=(eng_rank[2]+eng_rank[3]), command=self.click_eng2)
         self.eng2.grid(row=2, column=1, columnspan=6)
-        self.eng3 = tk.Button(self, text='英語3')
+        self.eng3 = tk.Button(self, text=(eng_rank[4]+eng_rank[5]), command=self.click_eng3)
         self.eng3.grid(row=3, column=1, columnspan=6)
-        self.eng4 = tk.Button(self, text='英語4')
+        self.eng4 = tk.Button(self, text=(eng_rank[6]+eng_rank[7]), command=self.click_eng4)
         self.eng4.grid(row=4, column=1, columnspan=6)
-        self.eng5 = tk.Button(self, text='英語5')
+        self.eng5 = tk.Button(self, text=(eng_rank[8]+eng_rank[9]), command=self.click_eng5)
         self.eng5.grid(row=5, column=1, columnspan=6)
-    
+
     def click_eng1(self):
-        #webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + str(eng_rank[0]) + '+' + str(eng_rank[1]))
-        webbrowser.open_new_tab('https://www.youtube.com')
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + eng_rank[0] + '+' + eng_rank[1])
 
+    def click_eng2(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + eng_rank[2] + '+' + eng_rank[3])
 
-'''
+    def click_eng3(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + eng_rank[4] + '+' + eng_rank[5])
+
+    def click_eng4(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + eng_rank[6] + '+' + eng_rank[7])
+
+    def click_eng5(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + eng_rank[8] + '+' + eng_rank[9])
+
+    '''日語'''
     def click_jap(self):
-        self.man1 = tk.Button(self, text='華語1')
-        self.man1.grid(row=1, column=1, columnspan=6)
-        self.man2 = tk.Button(self, text='華語2')
-        self.man2.grid(row=2, column=1, columnspan=6)
-        self.man3 = tk.Button(self, text='華語3')
-        self.man3.grid(row=3, column=1, columnspan=6)
-        self.man4 = tk.Button(self, text='華語4')
-        self.man4.grid(row=4, column=1, columnspan=6)
-        self.man5 = tk.Button(self, text='華語5')
-        self.man5.grid(row=5, column=1, columnspan=6)
+        self.jap1 = tk.Button(self, text=(jap_rank[0]+jap_rank[1]), command=self.click_jap1)
+        self.jap1.grid(row=1, column=1, columnspan=6)
+        self.jap2 = tk.Button(self, text=(jap_rank[2]+jap_rank[3]), command=self.click_jap2)
+        self.jap2.grid(row=2, column=1, columnspan=6)
+        self.jap3 = tk.Button(self, text=(jap_rank[4]+jap_rank[5]), command=self.click_jap3)
+        self.jap3.grid(row=3, column=1, columnspan=6)
+        self.jap4 = tk.Button(self, text=(jap_rank[6]+jap_rank[7]), command=self.click_jap4)
+        self.jap4.grid(row=4, column=1, columnspan=6)
+        self.jap5 = tk.Button(self, text=(jap_rank[8]+jap_rank[9]), command=self.click_jap5)
+        self.jap5.grid(row=5, column=1, columnspan=6)
 
+    def click_jap1(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + jap_rank[0] + '+' + jap_rank[1])
+
+    def click_jap2(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + jap_rank[2] + '+' + jap_rank[3])
+
+    def click_jap3(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + jap_rank[4] + '+' + jap_rank[5])
+
+    def click_jap4(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + jap_rank[6] + '+' + jap_rank[7])
+
+    def click_jap5(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + jap_rank[8] + '+' + jap_rank[9])
+
+    '''韓語'''
     def click_kor(self):
-        self.man1 = tk.Button(self, text='華語1')
-        self.man1.grid(row=1, column=1, columnspan=6)
-        self.man2 = tk.Button(self, text='華語2')
-        self.man2.grid(row=2, column=1, columnspan=6)
-        self.man3 = tk.Button(self, text='華語3')
-        self.man3.grid(row=3, column=1, columnspan=6)
-        self.man4 = tk.Button(self, text='華語4')
-        self.man4.grid(row=4, column=1, columnspan=6)
-        self.man5 = tk.Button(self, text='華語5')
-        self.man5.grid(row=5, column=1, columnspan=6)
-'''
+        self.kor1 = tk.Button(self, text=(kor_rank[0]+kor_rank[1]), command=self.click_kor1)
+        self.kor1.grid(row=1, column=1, columnspan=6)
+        self.kor2 = tk.Button(self, text=(kor_rank[2]+kor_rank[3]), command=self.click_kor2)
+        self.kor2.grid(row=2, column=1, columnspan=6)
+        self.kor3 = tk.Button(self, text=(kor_rank[4]+kor_rank[5]), command=self.click_kor3)
+        self.kor3.grid(row=3, column=1, columnspan=6)
+        self.kor4 = tk.Button(self, text=(kor_rank[6]+kor_rank[7]), command=self.click_kor4)
+        self.kor4.grid(row=4, column=1, columnspan=6)
+        self.kor5 = tk.Button(self, text=(kor_rank[8]+kor_rank[9]), command=self.click_kor5)
+        self.kor5.grid(row=5, column=1, columnspan=6)
+
+    def click_kor1(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + kor_rank[0] + '+' + kor_rank[1])
+
+    def click_kor2(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + kor_rank[2] + '+' + kor_rank[3])
+
+    def click_kor3(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + kor_rank[4] + '+' + kor_rank[5])
+
+    def click_kor4(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + kor_rank[6] + '+' + kor_rank[7])
+
+    def click_kor5(self):
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + kor_rank[8] + '+' + kor_rank[9])
+
 ranking = Ranking()
 ranking.master.title("KKbox Ranking")
 ranking.mainloop()
