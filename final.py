@@ -3,51 +3,51 @@ from bs4 import BeautifulSoup
 import tkinter as tk
 import webbrowser
 
-man = 'https://kma.kkbox.com/charts/daily/song?cate=297'
-eng = 'https://kma.kkbox.com/charts/daily/song?cate=390'
-jap = 'https://kma.kkbox.com/charts/daily/song?cate=308'
-kor = 'https://kma.kkbox.com/charts/daily/song?cate=314'
-twn = 'https://kma.kkbox.com/charts/daily/song?cate=304'
-can = 'https://kma.kkbox.com/charts/daily/song?cate=320'
+url = 'https://kma.kkbox.com/charts/daily/song?cate='
+song_list = ['297', '390', '308', '314', '304', '320'] # 華語man,英文eng,日文jap,韓文kor,台語twn,粵語can
+song_index = -1
+
+man_rank = []
+eng_rank = []
+jap_rank = []
+kor_rank = []
+twn_rank = []
+can_rank = []
+
+for o in (man_rank, eng_rank, jap_rank, kor_rank, twn_rank, can_rank):
+    song_index += 1
+    song_url = url + song_list[song_index]
+
+    r = requests.get(song_url)
+
+    soup = BeautifulSoup(r.text, 'html.parser')
+    attr = {'name': 'description'}
+
+    rank = soup.find_all('meta', attrs = attr)     # 找到html裡面的meta標籤
+    rank_str = rank[0]['content']                  # 找到排行榜的部分
+    rank_str = rank_str[(rank_str.find('：')+1):]  # 只抓取歌單的部分
+    rank_list = rank_str.split('、')               # 把str轉成list
 
 
-r = requests.get(man)
-soup = BeautifulSoup(r.text, 'html.parser')
-attr = {'name': 'description'}
+    # list中0,2,4,6,8為歌名; 1,3,5,7,9為歌手
+    for i in rank_list:
+        #rank = i.strip()
+        title = i[:i.find('-')]       # 把歌名整理一下
+        singer = i[(i.find('-')+1):]  # 把歌手整理一下
+        if title.find('('):           # 如果歌名有(像是歌名的英文名稱)
+            o.append(title[:title.find('(')])  # 只保留中文的部分
+        else:
+            o.append(title)
 
-rank = soup.find_all('meta', attrs = attr)     # 找到html裡面的meta標籤
-rank_str = rank[0]['content']                  # 找到排行榜的部分
-rank_str = rank_str[(rank_str.find('：')+1):]  # 只抓取歌單的部分
-rank_list = rank_str.split('、')               # 把str轉成list
+        if singer.find('-'):
+            o.append(singer[(singer.find('-')+1):])
+        else:
+            o.append(singer)
 
-rank_songtitle = []
-rank_singer = []
+    # 把前後有空格的整理乾淨
+    for i in range(10):
+        o[i] = o[i].strip()
 
-# print(rank_list)
-
-for i in rank_list:
-    #rank = i.strip()
-    title = i[:i.find('-')]       # 把歌名整理一下
-    singer = i[(i.find('-')+1):]  # 把歌手整理一下
-    if title.find('('):           # 如果歌名有(像是歌名的英文名稱)
-        rank_songtitle.append(title[:title.find('(')])  # 就只保留中文的部分
-    else:
-        rank_songtitle.append(title)
-
-    if singer.find('-'):
-        rank_singer.append(singer[(singer.find('-')+1):])
-    else:
-        rank_singer.append(singer)
-
-# 把前後有空格的整理乾淨
-for i in range(5):
-    rank_singer[i] = rank_singer[i].strip()
-    rank_songtitle[i] = rank_songtitle[i].strip()
-
-#for i in range(5):
-#    print(rank_singer[i])
-#    print(rank_songtitle[i])
-#    print('-----------------')
 
 '''視窗'''
 class Ranking(tk.Frame):
@@ -84,19 +84,19 @@ class Ranking(tk.Frame):
         self.rank5.grid(row=5, column=0)
 
     def click_man(self):
-        self.man1 = tk.Button(self, text=(rank_songtitle[0]+rank_singer[0]), command=self.click_man1)
+        self.man1 = tk.Button(self, text=(man_rank[0]+man_rank[1]), command=self.click_man1)
         self.man1.grid(row=1, column=1, columnspan=6)
-        self.man2 = tk.Button(self, text=(rank_songtitle[1]+rank_singer[1]))
+        self.man2 = tk.Button(self, text=(man_rank[2]+man_rank[3]))
         self.man2.grid(row=2, column=1, columnspan=6)
-        self.man3 = tk.Button(self, text=(rank_songtitle[2]+rank_singer[2]))
+        self.man3 = tk.Button(self, text=(man_rank[4]+man_rank[5]))
         self.man3.grid(row=3, column=1, columnspan=6)
-        self.man4 = tk.Button(self, text=(rank_songtitle[3]+rank_singer[3]))
+        self.man4 = tk.Button(self, text=(man_rank[6]+man_rank[7]))
         self.man4.grid(row=4, column=1, columnspan=6)
-        self.man5 = tk.Button(self, text=(rank_songtitle[4]+rank_singer[4]))
+        self.man5 = tk.Button(self, text=(man_rank[8]+man_rank[9]))
         self.man5.grid(row=5, column=1, columnspan=6)
         
     def click_man1(self):
-        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + str(rank_songtitle[0]) + '+' + str(rank_singer[0]))
+        webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + str(man_rank[0]) + '+' + str(man_rank[1]))
     
     def click_eng(self):
         self.eng1 = tk.Button(self, text='英語1', command=self.click_eng1)
@@ -111,7 +111,7 @@ class Ranking(tk.Frame):
         self.eng5.grid(row=5, column=1, columnspan=6)
     
     def click_eng1(self):
-        #webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + str(rank_songtitle[0]) + '+' + str(rank_singer[0]))
+        #webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + str(eng_rank[0]) + '+' + str(eng_rank[1]))
         webbrowser.open_new_tab('https://www.youtube.com')
 
 
