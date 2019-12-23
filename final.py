@@ -64,7 +64,7 @@ class Ranking(tk.Frame):
         self.click_man()
 
     # 主題標籤
-   # def create_lable(self):
+    # def create_lable(self):
 
         #self.labell = tk.label(self, image=logo)
 
@@ -80,15 +80,15 @@ class Ranking(tk.Frame):
         self.korbut = tk.Button(self, text='韓語', font="微軟正黑體", bg = 'Ivory', activebackground="Cyan", activeforeground="white", command=self.click_kor)
         self.korbut.grid(row=0, column=4, ipadx=15, pady=15, sticky=tk.NW+tk.SE)
 
-        self.rank1 = tk.Label(self, text=' 1st ', font=("微軟正黑體"), bg = 'Lime')
+        self.rank1 = tk.Label(self, text=' 1st ', font=("微軟正黑體"), bg = 'Black', fg='White')
         self.rank1.grid(row=1, column=0, padx=10, pady=5, sticky=tk.NW+tk.SE)
-        self.rank2 = tk.Label(self, text=' 2nd ', font=("微軟正黑體"), bg = 'Lime')
+        self.rank2 = tk.Label(self, text=' 2nd ', font=("微軟正黑體"), bg = 'Black', fg='White')
         self.rank2.grid(row=2, column=0, padx=10, pady=5, sticky=tk.NW+tk.SE)
-        self.rank3 = tk.Label(self, text=' 3rd ', font=("微軟正黑體"), bg = 'Lime')
+        self.rank3 = tk.Label(self, text=' 3rd ', font=("微軟正黑體"), bg = 'Black', fg='White')
         self.rank3.grid(row=3, column=0, padx=10, pady=5, sticky=tk.NW+tk.SE)
-        self.rank4 = tk.Label(self, text=' 4th ', font=("微軟正黑體"), bg = 'Lime')
+        self.rank4 = tk.Label(self, text=' 4th ', font=("微軟正黑體"), bg = 'Black', fg='White')
         self.rank4.grid(row=4, column=0, padx=10, pady=5, sticky=tk.NW+tk.SE)
-        self.rank5 = tk.Label(self, text=' 5th ', font=("微軟正黑體"), bg = 'Lime')
+        self.rank5 = tk.Label(self, text=' 5th ', font=("微軟正黑體"), bg = 'Black', fg='White')
         self.rank5.grid(row=5, column=0, padx=10, pady=5, sticky=tk.NW+tk.SE)
 
     '''華語'''
@@ -212,4 +212,5 @@ ranking.master.title("KKbox Ranking")
 #ranking.master.geometry('400x200')
 ranking.master.attributes("-alpha",1)
 ranking.master.resizable(0, 0)
+ranking.configure(bg='Black')
 ranking.mainloop()
