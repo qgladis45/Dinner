@@ -71,24 +71,24 @@ class Ranking(tk.Frame):
     # 主題按鈕&名次
     def create_widgets(self): 
 
-        self.manbut = tk.Button(self, text='華語', font="微軟正黑體", bg = 'Khaki', activebackground="Cyan", activeforeground="white", command=self.click_man)
+        self.manbut = tk.Button(self, text='華語', font="微軟正黑體", bg = 'Ivory', activebackground="Cyan", activeforeground="white", command=self.click_man)
         self.manbut.grid(row=0, column=1, ipadx=15, pady=15, sticky=tk.W+tk.N)
-        self.engbut = tk.Button(self, text='西洋', font="微軟正黑體", bg = 'Khaki', activebackground="Cyan", activeforeground="white", command=self.click_eng)
+        self.engbut = tk.Button(self, text='西洋', font="微軟正黑體", bg = 'Ivory', activebackground="Cyan", activeforeground="white", command=self.click_eng)
         self.engbut.grid(row=0, column=2, ipadx=15, pady=15, sticky=tk.W+tk.N)
-        self.japbut = tk.Button(self, text='日語', font="微軟正黑體", bg = 'Khaki', activebackground="Cyan", activeforeground="white", command=self.click_jap)
+        self.japbut = tk.Button(self, text='日語', font="微軟正黑體", bg = 'Ivory', activebackground="Cyan", activeforeground="white", command=self.click_jap)
         self.japbut.grid(row=0, column=3, ipadx=15, pady=15, sticky=tk.W+tk.N)
-        self.korbut = tk.Button(self, text='韓語', font="微軟正黑體", bg = 'Khaki', activebackground="Cyan", activeforeground="white", command=self.click_kor)
+        self.korbut = tk.Button(self, text='韓語', font="微軟正黑體", bg = 'Ivory', activebackground="Cyan", activeforeground="white", command=self.click_kor)
         self.korbut.grid(row=0, column=4, ipadx=15, pady=15, sticky=tk.W+tk.N)
 
-        self.rank1 = tk.Label(self, text='第一名', font=("微軟正黑體, 15"), bg = 'Goldenrod')
+        self.rank1 = tk.Label(self, text='第一名', font=("微軟正黑體, 15"), bg = 'Lime')
         self.rank1.grid(row=1, column=0, padx=10, pady=5, sticky=tk.W+tk.N)
-        self.rank2 = tk.Label(self, text='第二名', font=("微軟正黑體, 15"), bg = 'Goldenrod')
+        self.rank2 = tk.Label(self, text='第二名', font=("微軟正黑體, 15"), bg = 'Lime')
         self.rank2.grid(row=2, column=0, padx=10, pady=5, sticky=tk.W+tk.N)
-        self.rank3 = tk.Label(self, text='第三名', font=("微軟正黑體, 15"), bg = 'Goldenrod')
+        self.rank3 = tk.Label(self, text='第三名', font=("微軟正黑體, 15"), bg = 'Lime')
         self.rank3.grid(row=3, column=0, padx=10, pady=5, sticky=tk.W+tk.N)
-        self.rank4 = tk.Label(self, text='第四名', font=("微軟正黑體, 15"), bg = 'Goldenrod')
+        self.rank4 = tk.Label(self, text='第四名', font=("微軟正黑體, 15"), bg = 'Lime')
         self.rank4.grid(row=4, column=0, padx=10, pady=5, sticky=tk.W+tk.N)
-        self.rank5 = tk.Label(self, text='第五名', font=("微軟正黑體, 15"), bg = 'Goldenrod')
+        self.rank5 = tk.Label(self, text='第五名', font=("微軟正黑體, 15"), bg = 'Lime')
         self.rank5.grid(row=5, column=0, padx=10, pady=5, sticky=tk.W+tk.N)
 
     '''華語'''
@@ -209,7 +209,7 @@ class Ranking(tk.Frame):
 
 ranking = Ranking()
 ranking.master.title("KKbox Ranking")
-ranking.master.geometry('400x200')
+#ranking.master.geometry('400x200')
 ranking.master.attributes("-alpha",0.9)
 ranking.master.resizable(0, 0)
 ranking.mainloop()
