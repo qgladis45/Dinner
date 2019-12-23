@@ -94,6 +94,7 @@ class Ranking(tk.Frame):
     '''華語'''
     def click_man(self):
     
+<<<<<<< HEAD
         self.man1 = tk.Button(self, text=(man_rank[0]+ " - " + man_rank[1]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_man1)
         self.man1.grid(row=1, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
         self.man2 = tk.Button(self, text=(man_rank[2]+ " - " + man_rank[3]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_man2)
@@ -104,6 +105,18 @@ class Ranking(tk.Frame):
         self.man4.grid(row=4, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
         self.man5 = tk.Button(self, text=(man_rank[8]+ " - " + man_rank[9]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_man5)
         self.man5.grid(row=5, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
+=======
+        self.man1 = tk.Button(self, text=(man_rank[0]+man_rank[1]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_man1)
+        self.man1.grid(row=1, column=1, columnspan=6, padx=10, pady=5, sticky=tk.W)
+        self.man2 = tk.Button(self, text=(man_rank[2]+man_rank[3]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_man2)
+        self.man2.grid(row=2, column=1, columnspan=6, padx=10, pady=5, sticky=tk.W)
+        self.man3 = tk.Button(self, text=(man_rank[4]+man_rank[5]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_man3)
+        self.man3.grid(row=3, column=1, columnspan=6, padx=10, pady=5, sticky=tk.W)
+        self.man4 = tk.Button(self, text=(man_rank[6]+man_rank[7]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_man4)
+        self.man4.grid(row=4, column=1, columnspan=6, padx=10, pady=5, sticky=tk.W)
+        self.man5 = tk.Button(self, text=(man_rank[8]+man_rank[9]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_man5)
+        self.man5.grid(row=5, column=1, columnspan=6, padx=10, pady=5, sticky=tk.W)
+>>>>>>> 354d9618eebbfa73e3d54c100d5ae221caea7dfa
 
     def click_man1(self):
         webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + man_rank[0] + '+' + man_rank[1])
@@ -123,6 +136,7 @@ class Ranking(tk.Frame):
     '''西洋'''
     def click_eng(self):
       
+<<<<<<< HEAD
         self.eng1 = tk.Button(self, text=(eng_rank[0]+ " - " + eng_rank[1]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_eng1)
         self.eng1.grid(row=1, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
         self.eng2 = tk.Button(self, text=(eng_rank[2]+ " - " + eng_rank[3]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_eng2)
@@ -133,6 +147,18 @@ class Ranking(tk.Frame):
         self.eng4.grid(row=4, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
         self.eng5 = tk.Button(self, text=(eng_rank[8]+ " - " + eng_rank[9]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_eng5)
         self.eng5.grid(row=5, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
+=======
+        self.eng1 = tk.Button(self, text=(eng_rank[0]+eng_rank[1]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_eng1)
+        self.eng1.grid(row=1, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.eng2 = tk.Button(self, text=(eng_rank[2]+eng_rank[3]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_eng2)
+        self.eng2.grid(row=2, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.eng3 = tk.Button(self, text=(eng_rank[4]+eng_rank[5]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_eng3)
+        self.eng3.grid(row=3, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.eng4 = tk.Button(self, text=(eng_rank[6]+eng_rank[7]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_eng4)
+        self.eng4.grid(row=4, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.eng5 = tk.Button(self, text=(eng_rank[8]+eng_rank[9]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_eng5)
+        self.eng5.grid(row=5, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+>>>>>>> 354d9618eebbfa73e3d54c100d5ae221caea7dfa
 
     def click_eng1(self):
         webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + eng_rank[0] + '+' + eng_rank[1])
@@ -152,6 +178,7 @@ class Ranking(tk.Frame):
     '''日語'''
     def click_jap(self):
     
+<<<<<<< HEAD
         self.jap1 = tk.Button(self, text=(jap_rank[0]+ " - " + jap_rank[1]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_jap1)
         self.jap1.grid(row=1, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
         self.jap2 = tk.Button(self, text=(jap_rank[2]+ " - " + jap_rank[3]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_jap2)
@@ -162,6 +189,18 @@ class Ranking(tk.Frame):
         self.jap4.grid(row=4, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
         self.jap5 = tk.Button(self, text=(jap_rank[8]+ " - " + jap_rank[9]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_jap5)
         self.jap5.grid(row=5, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
+=======
+        self.jap1 = tk.Button(self, text=(jap_rank[0]+jap_rank[1]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_jap1)
+        self.jap1.grid(row=1, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.jap2 = tk.Button(self, text=(jap_rank[2]+jap_rank[3]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_jap2)
+        self.jap2.grid(row=2, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.jap3 = tk.Button(self, text=(jap_rank[4]+jap_rank[5]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_jap3)
+        self.jap3.grid(row=3, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.jap4 = tk.Button(self, text=(jap_rank[6]+jap_rank[7]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_jap4)
+        self.jap4.grid(row=4, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.jap5 = tk.Button(self, text=(jap_rank[8]+jap_rank[9]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_jap5)
+        self.jap5.grid(row=5, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+>>>>>>> 354d9618eebbfa73e3d54c100d5ae221caea7dfa
 
     def click_jap1(self):
         webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + jap_rank[0] + '+' + jap_rank[1])
@@ -181,6 +220,7 @@ class Ranking(tk.Frame):
     '''韓語'''
     def click_kor(self):
     
+<<<<<<< HEAD
         self.kor1 = tk.Button(self, text=(kor_rank[0]+ " - " + kor_rank[1]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_kor1)
         self.kor1.grid(row=1, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
         self.kor2 = tk.Button(self, text=(kor_rank[2]+ " - " + kor_rank[3]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_kor2)
@@ -191,6 +231,18 @@ class Ranking(tk.Frame):
         self.kor4.grid(row=4, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
         self.kor5 = tk.Button(self, text=(kor_rank[8]+ " - " + kor_rank[9]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_kor5)
         self.kor5.grid(row=5, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
+=======
+        self.kor1 = tk.Button(self, text=(kor_rank[0]+kor_rank[1]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_kor1)
+        self.kor1.grid(row=1, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.kor2 = tk.Button(self, text=(kor_rank[2]+kor_rank[3]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_kor2)
+        self.kor2.grid(row=2, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.kor3 = tk.Button(self, text=(kor_rank[4]+kor_rank[5]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_kor3)
+        self.kor3.grid(row=3, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.kor4 = tk.Button(self, text=(kor_rank[6]+kor_rank[7]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_kor4)
+        self.kor4.grid(row=4, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+        self.kor5 = tk.Button(self, text=(kor_rank[8]+kor_rank[9]), font=("微軟正黑體"), bg="WhiteSmoke", height=1, width=30, fg="Salmon", command=self.click_kor5)
+        self.kor5.grid(row=5, column=1, columnspan=6, padx=10, pady=5, sticky=tk.N)
+>>>>>>> 354d9618eebbfa73e3d54c100d5ae221caea7dfa
 
     def click_kor1(self):
         webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + kor_rank[0] + '+' + kor_rank[1])
@@ -210,6 +262,6 @@ class Ranking(tk.Frame):
 ranking = Ranking()
 ranking.master.title("KKbox Ranking")
 #ranking.master.geometry('400x200')
-ranking.master.attributes("-alpha",0.9)
+ranking.master.attributes("-alpha",1)
 ranking.master.resizable(0, 0)
 ranking.mainloop()
