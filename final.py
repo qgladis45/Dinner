@@ -71,13 +71,13 @@ class Ranking(tk.Frame):
     # 主題按鈕&名次
     def create_widgets(self): 
 
-        self.manbut = tk.Button(self, text='華語', font="微軟正黑體", bg = 'Ivory', activebackground="Cyan", activeforeground="white", command=self.click_man)
+        self.manbut = tk.Button(self, text='華語', font="微軟正黑體", bg = 'Black', fg='White', activebackground="Cyan", activeforeground="white", command=self.click_man)
         self.manbut.grid(row=0, column=1, ipadx=15, pady=15, sticky=tk.NW+tk.SE)
-        self.engbut = tk.Button(self, text='西洋', font="微軟正黑體", bg = 'Ivory', activebackground="Cyan", activeforeground="white", command=self.click_eng)
+        self.engbut = tk.Button(self, text='西洋', font="微軟正黑體", bg = 'Black', fg='White', activebackground="Cyan", activeforeground="white", command=self.click_eng)
         self.engbut.grid(row=0, column=2, ipadx=15, pady=15, sticky=tk.NW+tk.SE)
-        self.japbut = tk.Button(self, text='日語', font="微軟正黑體", bg = 'Ivory', activebackground="Cyan", activeforeground="white", command=self.click_jap)
+        self.japbut = tk.Button(self, text='日語', font="微軟正黑體", bg = 'Black', fg='White', activebackground="Cyan", activeforeground="white", command=self.click_jap)
         self.japbut.grid(row=0, column=3, ipadx=15, pady=15, sticky=tk.NW+tk.SE)
-        self.korbut = tk.Button(self, text='韓語', font="微軟正黑體", bg = 'Ivory', activebackground="Cyan", activeforeground="white", command=self.click_kor)
+        self.korbut = tk.Button(self, text='韓語', font="微軟正黑體", bg = 'Black', fg='White', activebackground="Cyan", activeforeground="white", command=self.click_kor)
         self.korbut.grid(row=0, column=4, ipadx=15, pady=15, sticky=tk.NW+tk.SE)
 
         self.rank1 = tk.Label(self, text=' 1st ', font=("微軟正黑體"), bg = 'Black', fg='White')
@@ -94,15 +94,15 @@ class Ranking(tk.Frame):
     '''華語'''
     def click_man(self):
 
-        self.man1 = tk.Button(self, text=(man_rank[0]+ " - " + man_rank[1]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_man1)
+        self.man1 = tk.Button(self, text=(man_rank[0]+ " - " + man_rank[1]), font=("微軟正黑體"), bg="Black", fg="Salmon", command=self.click_man1)
         self.man1.grid(row=1, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
-        self.man2 = tk.Button(self, text=(man_rank[2]+ " - " + man_rank[3]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_man2)
+        self.man2 = tk.Button(self, text=(man_rank[2]+ " - " + man_rank[3]), font=("微軟正黑體"), bg="Black", fg="Salmon", command=self.click_man2)
         self.man2.grid(row=2, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
-        self.man3 = tk.Button(self, text=(man_rank[4]+ " - " + man_rank[5]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_man3)
+        self.man3 = tk.Button(self, text=(man_rank[4]+ " - " + man_rank[5]), font=("微軟正黑體"), bg="Black", fg="Salmon", command=self.click_man3)
         self.man3.grid(row=3, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
-        self.man4 = tk.Button(self, text=(man_rank[6]+ " - " + man_rank[7]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_man4)
+        self.man4 = tk.Button(self, text=(man_rank[6]+ " - " + man_rank[7]), font=("微軟正黑體"), bg="Black", fg="Salmon", command=self.click_man4)
         self.man4.grid(row=4, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
-        self.man5 = tk.Button(self, text=(man_rank[8]+ " - " + man_rank[9]), font=("微軟正黑體"), bg="WhiteSmoke", fg="Salmon", command=self.click_man5)
+        self.man5 = tk.Button(self, text=(man_rank[8]+ " - " + man_rank[9]), font=("微軟正黑體"), bg="Black", fg="Salmon", command=self.click_man5)
         self.man5.grid(row=5, column=1, columnspan=6, padx=10, pady=5, sticky=tk.NW+tk.SE)
 
     def click_man1(self):
@@ -209,7 +209,7 @@ class Ranking(tk.Frame):
 
 ranking = Ranking()
 ranking.master.title("KKbox Ranking")
-#ranking.master.geometry('400x200')
+ranking.master.geometry('-0-50')  # 視窗設在右下角
 ranking.master.attributes("-alpha",1)
 ranking.master.resizable(0, 0)
 ranking.configure(bg='Black')
