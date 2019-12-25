@@ -1,8 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 import tkinter as tk
-from tkinter.ttk import *
+from tkinter import *
 import webbrowser
+from PIL import Image, ImageTk
 
 url = 'https://kma.kkbox.com/charts/daily/song?cate='
 song_list = ['297', '390', '308', '314', '304', '320'] # 華語man,英文eng,日文jap,韓文kor,台語twn,粵語can
@@ -55,7 +56,7 @@ def click(song, singer):
 #logo = tk.PhotoImage(file='ppu.jpg')
 
 class Ranking(tk.Frame):
-
+    
     def __init__(self, master = None):
         tk.Frame.__init__(self, master)
         self.grid()
@@ -72,7 +73,6 @@ class Ranking(tk.Frame):
     def create_widgets(self): 
 
         self.manbut = tk.Button(self, text='華語', font="微軟正黑體", bg = 'Black', fg='White', activebackground="LightSteelBlue4", activeforeground="White", command= lambda: self.click(man_rank))
-        # 這邊好像用不用lambda都沒有關係的樣子
         self.manbut.grid(row=0, column=1, ipadx=15, pady=2, sticky=tk.NW+tk.SE)
         self.engbut = tk.Button(self, text='西洋', font="微軟正黑體", bg = 'Black', fg='White', activebackground="LightSteelBlue4", activeforeground="White", command= lambda: self.click(eng_rank))
         self.engbut.grid(row=0, column=2, ipadx=15, pady=2, sticky=tk.NW+tk.SE)
@@ -80,7 +80,10 @@ class Ranking(tk.Frame):
         self.japbut.grid(row=0, column=3, ipadx=15, pady=2, sticky=tk.NW+tk.SE)
         self.korbut = tk.Button(self, text='韓語', font="微軟正黑體", bg = 'Black', fg='White', activebackground="LightSteelBlue4", activeforeground="White", command= lambda: self.click(kor_rank))
         self.korbut.grid(row=0, column=4, ipadx=15, pady=2, sticky=tk.NW+tk.SE)
-
+        
+        self.exitbut = tk.Button(self, width=2, text='Ⓧ', font=("微軟正黑體", 12), bg='Black', fg='Gray49', activebackground='Black', activeforeground='Gray49', relief='flat', command = exit)
+        self.exitbut.grid(row=0, column=0 , sticky=tk.NW)
+        
         self.rank1 = tk.Label(self, text=' 1st ', font=("微軟正黑體"), bg = 'Black', fg='Gold')
         self.rank1.grid(row=1, column=0, padx=10, pady=5, sticky=tk.NW+tk.SE)
         self.rank2 = tk.Label(self, text=' 2nd ', font=("微軟正黑體"), bg = 'Black', fg='Gold')
@@ -94,28 +97,33 @@ class Ranking(tk.Frame):
 
     def click(self, rank_name):
 
-        self.first = tk.Button(self, text=(rank_name[0]+ " - " + rank_name[1]), font=("微軟正黑體"), bg="Black", fg="Salmon", command= lambda: self.click_lan(rank_name, 1))
-        self.first.grid(row=1, column=1, columnspan=6, sticky=tk.NW+tk.SE)
-        self.second = tk.Button(self, text=(rank_name[2]+ " - " + rank_name[3]), font=("微軟正黑體"), bg="Black", fg="Salmon", command= lambda: self.click_lan(rank_name, 2))
-        self.second.grid(row=2, column=1, columnspan=6, sticky=tk.NW+tk.SE)
-        self.third = tk.Button(self, text=(rank_name[4]+ " - " + rank_name[5]), font=("微軟正黑體"), bg="Black", fg="Salmon", command= lambda: self.click_lan(rank_name, 3))
-        self.third.grid(row=3, column=1, columnspan=6, sticky=tk.NW+tk.SE)
-        self.forth = tk.Button(self, text=(rank_name[6]+ " - " + rank_name[7]), font=("微軟正黑體"), bg="Black", fg="Salmon", command= lambda: self.click_lan(rank_name, 4))
-        self.forth.grid(row=4, column=1, columnspan=6, sticky=tk.NW+tk.SE)
-        self.fifth = tk.Button(self, text=(rank_name[8]+ " - " + rank_name[9]), font=("微軟正黑體"), bg="Black", fg="Salmon", command= lambda: self.click_lan(rank_name, 5))
-        self.fifth.grid(row=5, column=1, columnspan=6, sticky=tk.NW+tk.SE)
+        self.but1 = tk.Button(self, text=(rank_name[0]+ " - " + rank_name[1]), font=("微軟正黑體"), bg="Black", fg="LightGoldenrod1", activebackground='Gold', command= lambda: self.click_lan(rank_name, 1))
+        self.but1.grid(row=1, column=1, columnspan=6, sticky=tk.NW+tk.SE)
+        self.but2 = tk.Button(self, text=(rank_name[2]+ " - " + rank_name[3]), font=("微軟正黑體"), bg="Black", fg="LightGoldenrod1", command= lambda: self.click_lan(rank_name, 2))
+        self.but2.grid(row=2, column=1, columnspan=6, sticky=tk.NW+tk.SE)
+        self.but3 = tk.Button(self, text=(rank_name[4]+ " - " + rank_name[5]), font=("微軟正黑體"), bg="Black", fg="Salmon", command= lambda: self.click_lan(rank_name, 3))
+        self.but3.grid(row=3, column=1, columnspan=6, sticky=tk.NW+tk.SE)
+        self.but4 = tk.Button(self, text=(rank_name[6]+ " - " + rank_name[7]), font=("微軟正黑體"), bg="Black", fg="Salmon", command= lambda: self.click_lan(rank_name, 4))
+        self.but4.grid(row=4, column=1, columnspan=6, sticky=tk.NW+tk.SE)
+        self.but5 = tk.Button(self, text=(rank_name[8]+ " - " + rank_name[9]), font=("微軟正黑體"), bg="Black", fg="Salmon", command= lambda: self.click_lan(rank_name, 5))
+        self.but5.grid(row=5, column=1, columnspan=6, sticky=tk.NW+tk.SE)
 
     def click_lan(self, language, rank):
+    
         webbrowser.open_new_tab('https://www.youtube.com/results?search_query=' + language[rank * 2 - 2] + '+' + language[rank*2 - 1])
-
+    
+    def exit(self):
+        self.quit()
+        
+        
 
 
 
 ranking = Ranking()
 ranking.master.title("KKbox Ranking")
-ranking.master.geometry('-0-50')  # 視窗設在右下角
+ranking.master.geometry('-30-50')  # 視窗設在右下角
 ranking.master.attributes("-alpha",1)
 ranking.master.resizable(0, 0)
 ranking.configure(bg='Black')
-#ranking.master.overrideredirect(True)  去邊框(上面那個)但沒辦法關
+ranking.master.overrideredirect(True)
 ranking.mainloop()
