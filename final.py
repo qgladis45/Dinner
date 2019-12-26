@@ -2,12 +2,27 @@ import requests
 from bs4 import BeautifulSoup
 import tkinter as tk
 from tkinter import *
+from tkinter import ttk
+from tkinter.messagebox import showinfo
 import webbrowser
 from PIL import Image, ImageTk
 from urllib.request import urlopen
 import io
 
+#網路連線檢查
+def popup_showinfo():
+    showinfo("溫馨小提示", "你沒網路我爬不了蟲") 
 
+def check_internet():
+    url='http://www.google.com/'
+    timeout=5
+    try:
+        _ = requests.get(url, timeout=timeout) #以谷歌測試
+        return True
+    except requests.ConnectionError:
+        popup_showinfo() #如果沒網路，以視窗顯示
+    return False
+	
 '''爬蟲'''
 url = "https://kma.kkbox.com/charts/daily/song?cate="
 song_list = ['297', '390', '308', '314']  # 華語man, 英文eng, 日文jap, 韓文kor
