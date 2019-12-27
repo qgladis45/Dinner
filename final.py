@@ -11,7 +11,7 @@ import io
 
 #網路連線檢查
 def popup_showinfo():
-    showinfo("溫馨小提示", "你沒網路我爬不了蟲") 
+    showinfo("溫馨小提示", "NO INTERNET CONNECTION") 
 
 def check_internet():
     url='http://www.google.com/'
@@ -22,6 +22,7 @@ def check_internet():
     except requests.ConnectionError:
         popup_showinfo() #如果沒網路，以視窗顯示
     return False
+check_internet()
 	
 '''爬蟲'''
 url = "https://kma.kkbox.com/charts/daily/song?cate="
