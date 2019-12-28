@@ -129,7 +129,7 @@ class Ranking(tk.Frame):
 
         # 離開(button)
         self.exitbut = tk.Button(self, width=2, text='Ⓧ', font=('微軟正黑體', 12), bg='Black', fg='Gray55', activebackground='Black', activeforeground='red', relief='flat', command=(lambda: self.quit()))
-        self.exitbut.grid(row=0, column=0, sticky=tk.NW)
+        self.exitbut.grid(row=0, column=0, ipadx=10, sticky=tk.NW)
 
     # function: 各主題的排行(button)
     def click(self, rank_name, cover_url):
