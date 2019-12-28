@@ -26,6 +26,8 @@ check_internet()
 	
 '''爬蟲'''
 url = "https://kma.kkbox.com/charts/daily/song?cate="
+spotify_url = 'https://spotifycharts.com/regional/tw/daily/latest'
+
 song_list = ['297', '390', '308', '314']  # 華語man, 英文eng, 日文jap, 韓文kor
 song_index = -1
 
@@ -33,10 +35,30 @@ man_rank = []
 eng_rank = []
 jap_rank = []
 kor_rank = []
-
+sp_rank = []
 topone_cover = []  # kkbox四語言的第一名專輯照片
 
+r_spotify = requests.get(spotify_url)
+soup_spotify = BeautifulSoup(r_spotify.text, 'html.parser')
+attr_spotify = {'class': 'chart-table-track'}
+rank_spotify = soup_spotify.find_all('td', attrs = attr_spotify)     # 找到html裡面的td標籤
 
+spotify_num = 0
+
+
+# spotify的排名
+for i in rank_spotify:
+    song = i.get_text().strip()
+    song = song.split('\nby')
+    sp_rank.append(song[0])  # 歌名
+    sp_rank.append(song[1])  # 歌手
+
+    # 只記錄前五名
+    spotify_num += 1
+    if spotify_num == 5:
+        break
+
+# kkbox的排名
 for o in (man_rank, eng_rank, jap_rank, kor_rank):
     song_index += 1
     song_url = url + song_list[song_index]
