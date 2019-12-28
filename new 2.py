@@ -100,6 +100,47 @@ class Ranking(tk.Frame):
         self.grid()
         self.create_widgets()
         self.click(man_rank, man_cover)
+    
+    def input_pic1(self, cover_name):
+        self.url = requests.get(man_cover[0])
+        self.imagebyte = io.BytesIO(self.url.content)
+        self.imagepil = Image.open(self.imagebyte)
+        self.imagepil = self.imagepil.resize((80, 80), Image.ANTIALIAS)  # 重設大小
+        self.image1 = ImageTk.PhotoImage(self.imagepil) 
+        return self.image1
+    
+    def input_pic2(self, cover_name):
+        self.url = requests.get(man_cover[1])
+        self.imagebyte = io.BytesIO(self.url.content)
+        self.imagepil = Image.open(self.imagebyte)
+        self.imagepil = self.imagepil.resize((80, 80), Image.ANTIALIAS)  # 重設大小
+        self.image2 = ImageTk.PhotoImage(self.imagepil) 
+        return self.image2
+        
+    def input_pic3(self, cover_name):
+        self.url = requests.get(man_cover[2])
+        self.imagebyte = io.BytesIO(self.url.content)
+        self.imagepil = Image.open(self.imagebyte)
+        self.imagepil = self.imagepil.resize((80, 80), Image.ANTIALIAS)  # 重設大小
+        self.image3 = ImageTk.PhotoImage(self.imagepil) 
+        return self.image3
+        
+    def input_pic4(self, cover_name):
+        self.url = requests.get(man_cover[3])
+        self.imagebyte = io.BytesIO(self.url.content)
+        self.imagepil = Image.open(self.imagebyte)
+        self.imagepil = self.imagepil.resize((80, 80), Image.ANTIALIAS)  # 重設大小
+        self.image4 = ImageTk.PhotoImage(self.imagepil) 
+        return self.image4
+        
+    def input_pic5(self, cover_name):
+        self.url = requests.get(man_cover[4])
+        self.imagebyte = io.BytesIO(self.url.content)
+        self.imagepil = Image.open(self.imagebyte)
+        self.imagepil = self.imagepil.resize((80, 80), Image.ANTIALIAS)  # 重設大小
+        self.image5 = ImageTk.PhotoImage(self.imagepil) 
+        return self.image5
+    
 
     # 建立主題按鈕&名次
     def create_widgets(self):
@@ -133,35 +174,35 @@ class Ranking(tk.Frame):
 
     # function: 各主題的排行(button)
     def click(self, rank_name, cover_name):
-        self.but1 = tk.Button(self, text=(rank_name[0] + " - " + rank_name[1]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name, 1)))
+        self.but1 = tk.Button(self, text=(rank_name[0] + " - " + rank_name[1]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name)))
         self.but1.grid(row=1, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
-        self.but2 = tk.Button(self, text=(rank_name[2] + " - " + rank_name[3]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name, 2)))
+        self.but2 = tk.Button(self, text=(rank_name[2] + " - " + rank_name[3]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name)))
         self.but2.grid(row=2, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
-        self.but3 = tk.Button(self, text=(rank_name[4] + " - " + rank_name[5]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name, 3)))
+        self.but3 = tk.Button(self, text=(rank_name[4] + " - " + rank_name[5]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name)))
         self.but3.grid(row=3, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
-        self.but4 = tk.Button(self, text=(rank_name[6] + " - " + rank_name[7]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name, 4)))
+        self.but4 = tk.Button(self, text=(rank_name[6] + " - " + rank_name[7]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name)))
         self.but4.grid(row=4, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
-        self.but5 = tk.Button(self, text=(rank_name[8] + " - " + rank_name[9]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name, 5)))
+        self.but5 = tk.Button(self, text=(rank_name[8] + " - " + rank_name[9]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name)))
         self.but5.grid(row=5, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
 
-        self.pic1 = tk.Label(self, image=self.input_pic(cover_name[0]), bg='Black')
+        self.pic1 = tk.Label(self, image=self.input_pic1(cover_name))
         self.pic1.grid(row=1, column=1, sticky=(tk.NW+tk.SE))
-        self.pic2 = tk.Label(self, image=self.input_pic(cover_name[1]), bg='Black')
+        self.pic2 = tk.Label(self, image=self.input_pic2(cover_name))
         self.pic2.grid(row=2, column=1, sticky=(tk.NW+tk.SE))
-        self.pic3 = tk.Label(self, image=self.input_pic(cover_name[2]), bg='Black')
+        self.pic3 = tk.Label(self, image=self.input_pic3(cover_name))
         self.pic3.grid(row=3, column=1, sticky=(tk.NW+tk.SE))
-        self.pic4 = tk.Label(self, image=self.input_pic(cover_name[3]), bg='Black')
+        self.pic4 = tk.Label(self, image=self.input_pic4(cover_name))
         self.pic4.grid(row=4, column=1, sticky=(tk.NW+tk.SE))
-        self.pic5 = tk.Label(self, image=self.input_pic(cover_name[4]), bg='Black')
+        self.pic5 = tk.Label(self, image=self.input_pic5(cover_name))
         self.pic5.grid(row=5, column=1, sticky=(tk.NW+tk.SE))
-
-    def input_pic(self, cover):
-        self.url = requests.get(cover) # !!!
+        
+        '''
+        self.url = requests.get(cover)
         self.imagebyte = io.BytesIO(self.url.content)
         self.imagepil = Image.open(self.imagebyte)
         self.imagepil = self.imagepil.resize((80, 80), Image.ANTIALIAS)  # 重設大小
         self.image = ImageTk.PhotoImage(self.imagepil)        
-        return self.image
+        '''
 
     # function: 按下歌曲
     def click_lan(self, language, rank):
