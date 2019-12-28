@@ -106,6 +106,7 @@ for o in (man_rank, eng_rank, jap_rank, kor_rank):
         o[i] = o[i].strip()
 
 
+spotify_pic_url = "http://www.scdn.co/i/_global/twitter_card-default.jpg"
 
 '''視窗'''
 class Ranking(tk.Frame):
@@ -115,6 +116,7 @@ class Ranking(tk.Frame):
         self.grid()
         self.create_widgets()
         self.click(man_rank, topone_cover[0])
+        self.spotifypic = tk.PhotoImage("C:\\Users\\User\\Desktop\\spotify-logo.jpg")
 
     # 建立主題按鈕&名次
     def create_widgets(self):
@@ -128,7 +130,7 @@ class Ranking(tk.Frame):
         self.japbut.grid(row=0, column=4, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
         self.korbut = tk.Button(self, text="韓語", font='微軟正黑體', bg='Black', fg='White', activebackground='#00AED8', activeforeground='White', command=(lambda: self.click(kor_rank, topone_cover[3])))
         self.korbut.grid(row=0, column=5, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
-        self.spobut = tk.Button(self, text="Spotify", font='微軟正黑體', bg='Black', fg='White', activebackground='#1ED65F', activeforeground='White')
+        self.spobut = tk.Button(self, text="Spotify", font='微軟正黑體', bg='Black', fg='White', activebackground='#1ED65F', activeforeground='White', command=(lambda: self.click(sp_rank, spotify_pic_url)))
         self.spobut.grid(row=0, column=6, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
         
         # 名次(label)
