@@ -128,7 +128,9 @@ class Ranking(tk.Frame):
         self.japbut.grid(row=0, column=4, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
         self.korbut = tk.Button(self, text="韓語", font='微軟正黑體', bg='Black', fg='White', activebackground='#00AED8', activeforeground='White', command=(lambda: self.click(kor_rank, topone_cover[3])))
         self.korbut.grid(row=0, column=5, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
-
+        self.spobut = tk.Button(self, text="Spotify", font='微軟正黑體', bg='Black', fg='White', activebackground='#1ED65F', activeforeground='White')
+        self.spobut.grid(row=0, column=6, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
+        
         # 名次(label)
         self.rank1 = tk.Label(self, text=' 1st ', font='微軟正黑體', bg='Black', fg='Gold')
         self.rank1.grid(row=2, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
