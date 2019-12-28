@@ -114,32 +114,32 @@ class Ranking(tk.Frame):
         tk.Frame.__init__(self, master)
         self.grid()
         self.create_widgets()
-        self.click(man_rank)
+        self.click(man_rank, topone_cover[0])
 
     # 建立主題按鈕&名次
     def create_widgets(self):
 
         # 主題(button)
-        self.manbut = tk.Button(self, text="華語", font='微軟正黑體', bg='Black', fg='White', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click(man_rank)))
+        self.manbut = tk.Button(self, text="華語", font='微軟正黑體', bg='Black', fg='White', activebackground='#00AED8', activeforeground='White', command=(lambda: self.click(man_rank, topone_cover[0])))
         self.manbut.grid(row=0, column=2, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
-        self.engbut = tk.Button(self, text="西洋", font='微軟正黑體', bg='Black', fg='White', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click(eng_rank)))
+        self.engbut = tk.Button(self, text="西洋", font='微軟正黑體', bg='Black', fg='White', activebackground='#00AED8', activeforeground='White', command=(lambda: self.click(eng_rank, topone_cover[1])))
         self.engbut.grid(row=0, column=3, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
-        self.japbut = tk.Button(self, text="日語", font='微軟正黑體', bg='Black', fg='White', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click(jap_rank)))
+        self.japbut = tk.Button(self, text="日語", font='微軟正黑體', bg='Black', fg='White', activebackground='#00AED8', activeforeground='White', command=(lambda: self.click(jap_rank, topone_cover[2])))
         self.japbut.grid(row=0, column=4, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
-        self.korbut = tk.Button(self, text="韓語", font='微軟正黑體', bg='Black', fg='White', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click(kor_rank)))
+        self.korbut = tk.Button(self, text="韓語", font='微軟正黑體', bg='Black', fg='White', activebackground='#00AED8', activeforeground='White', command=(lambda: self.click(kor_rank, topone_cover[3])))
         self.korbut.grid(row=0, column=5, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
 
         # 名次(label)
         self.rank1 = tk.Label(self, text=' 1st ', font='微軟正黑體', bg='Black', fg='Gold')
-        self.rank1.grid(row=1, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
+        self.rank1.grid(row=2, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
         self.rank2 = tk.Label(self, text=' 2nd ', font='微軟正黑體', bg='Black', fg='Gold')
-        self.rank2.grid(row=2, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
+        self.rank2.grid(row=3, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
         self.rank3 = tk.Label(self, text=' 3rd ', font='微軟正黑體', bg='Black', fg='Gold')
-        self.rank3.grid(row=3, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
+        self.rank3.grid(row=4, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
         self.rank4 = tk.Label(self, text=' 4th ', font='微軟正黑體', bg='Black', fg='Gold')
-        self.rank4.grid(row=4, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
+        self.rank4.grid(row=5, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
         self.rank5 = tk.Label(self, text=' 5th ', font='微軟正黑體', bg='Black', fg='Gold')
-        self.rank5.grid(row=5, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
+        self.rank5.grid(row=6, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
 
         # 離開(button)
         self.exitbut = tk.Button(self, width=2, text='Ⓧ', font=('微軟正黑體', 12), bg='Black', fg='Gray55', activebackground='Black', activeforeground='red', relief='flat', command=(lambda: self.quit()))
@@ -147,36 +147,29 @@ class Ranking(tk.Frame):
 
 
     # function: 各主題的排行(button)
-    def click(self, rank_name):
+    def click(self, rank_name, cover_url):
         self.but1 = tk.Button(self, text=(rank_name[0] + " - " + rank_name[1]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name, 1)))
-        self.but1.grid(row=1, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
+        self.but1.grid(row=2, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
         self.but2 = tk.Button(self, text=(rank_name[2] + " - " + rank_name[3]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name, 2)))
-        self.but2.grid(row=2, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
+        self.but2.grid(row=3, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
         self.but3 = tk.Button(self, text=(rank_name[4] + " - " + rank_name[5]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name, 3)))
-        self.but3.grid(row=3, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
+        self.but3.grid(row=4, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
         self.but4 = tk.Button(self, text=(rank_name[6] + " - " + rank_name[7]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name, 4)))
-        self.but4.grid(row=4, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
+        self.but4.grid(row=5, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
         self.but5 = tk.Button(self, text=(rank_name[8] + " - " + rank_name[9]), font='微軟正黑體', bg='Black', fg='Snow2', activebackground='LightSteelBlue4', activeforeground='White', command=(lambda: self.click_lan(rank_name, 5)))
-        self.but5.grid(row=5, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
+        self.but5.grid(row=6, column=2, columnspan=6, sticky=(tk.NW+tk.SE))
 
         # 圖片
-        self.url = requests.get(man_cover[3])
+        self.url = requests.get(cover_url)
         self.imagebyte = io.BytesIO(self.url.content)
         self.imagepil = Image.open(self.imagebyte)
-        self.imagepil = self.imagepil.resize((80, 80), Image.ANTIALIAS)  # 重設大小
-        self.image1 = ImageTk.PhotoImage(self.imagepil)
+        self.imagepil = self.imagepil.resize((200, 200), Image.ANTIALIAS)  # 重設大小
+        self.image = ImageTk.PhotoImage(self.imagepil)
 
         # 圖片(Label)
-        self.pic1 = tk.Label(self, image=self.image1, bg='Black')
-        self.pic1.grid(row=1, column=1, sticky=(tk.NW+tk.SE))
-        self.pic2 = tk.Label(self, image=self.image1, bg='Black')
-        self.pic2.grid(row=2, column=1, sticky=(tk.NW+tk.SE))
-        self.pic3 = tk.Label(self, image=self.image1, bg='Black')
-        self.pic3.grid(row=3, column=1, sticky=(tk.NW+tk.SE))
-        self.pic4 = tk.Label(self, image=self.image1, bg='Black')
-        self.pic4.grid(row=4, column=1, sticky=(tk.NW+tk.SE))
-        self.pic5 = tk.Label(self, image=self.image1, bg='Black')
-        self.pic5.grid(row=5, column=1, sticky=(tk.NW+tk.SE))
+        self.pic = tk.Label(self, image=self.image, bg='Black')
+        self.pic.grid(row=1, columnspan=7, sticky=(tk.NW+tk.SE))
+
 
     # function: 按下歌曲
     def click_lan(self, language, rank):
