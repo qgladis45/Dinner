@@ -8,8 +8,8 @@ import webbrowser
 from PIL import Image, ImageTk
 from urllib.request import urlopen
 import io
-	
-'''爬蟲'''
+
+# 爬蟲
 url = "https://kma.kkbox.com/charts/daily/song?cate="
 spotify_url = 'https://spotifycharts.com/regional/tw/daily/latest'
 
@@ -26,7 +26,7 @@ topone_cover = []  # kkbox四語言的第一名專輯照片
 r_spotify = requests.get(spotify_url)
 soup_spotify = BeautifulSoup(r_spotify.text, 'html.parser')
 attr_spotify = {'class': 'chart-table-track'}
-rank_spotify = soup_spotify.find_all('td', attrs = attr_spotify)     # 找到html裡面的td標籤
+rank_spotify = soup_spotify.find_all('td', attrs=attr_spotify)  # 找到html裡面的td標籤
 
 spotify_num = 0
 
@@ -54,12 +54,12 @@ for o in (man_rank, eng_rank, jap_rank, kor_rank):
 
     # 各語言第一名的專輯照片
     cover_scripts = soup.find_all('script')
-    cover_scripts = cover_scripts[-2].text[:2000] # 後面一大段都不重要
+    cover_scripts = cover_scripts[-2].text[:2000]  # 後面一大段都不重要
 
     cover_start = cover_scripts.find('small')
     cover_end = cover_scripts.find('160x160.jpg')
     cover_url = cover_scripts[cover_start+8:cover_end+11]
-    cover_url = cover_url.replace('\\' , '')
+    cover_url = cover_url.replace('\\', '')
     topone_cover.append(cover_url)
 
     # 找到前五歌名和歌手
@@ -87,9 +87,10 @@ for o in (man_rank, eng_rank, jap_rank, kor_rank):
     for i in range(10):
         o[i] = o[i].strip()
 
-spotify_pic_url = "http://www.scdn.co/i/_global/twitter_card-default.jpg"
+spotify_pic_url = "http://www.scdn.co/i/_global/twitter_card-default.jpg"  # Spotify logo
 
-'''視窗'''
+
+# 視窗
 class Ranking(tk.Frame):
 
     def __init__(self, master=None):
@@ -113,7 +114,7 @@ class Ranking(tk.Frame):
         self.korbut.grid(row=0, column=5, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
         self.spobut = tk.Button(self, text="Spotify", font='微軟正黑體', bg='Black', fg='White', activebackground='#1ED65F', activeforeground='White', command=(lambda: self.click(sp_rank, spotify_pic_url)))
         self.spobut.grid(row=0, column=6, ipadx=15, pady=2, sticky=(tk.NW+tk.SE))
-        
+
         # 名次(label)
         self.rank1 = tk.Label(self, text=' 1st ', font='微軟正黑體', bg='Black', fg='Gold')
         self.rank1.grid(row=2, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
@@ -129,7 +130,6 @@ class Ranking(tk.Frame):
         # 離開(button)
         self.exitbut = tk.Button(self, width=2, text='Ⓧ', font=('微軟正黑體', 12), bg='Black', fg='Gray55', activebackground='Black', activeforeground='red', relief='flat', command=(lambda: self.quit()))
         self.exitbut.grid(row=0, column=0, sticky=tk.NW)
-
 
     # function: 各主題的排行(button)
     def click(self, rank_name, cover_url):
@@ -155,16 +155,15 @@ class Ranking(tk.Frame):
         self.pic = tk.Label(self, image=self.image, bg='Black')
         self.pic.grid(row=1, columnspan=7, sticky=(tk.NW+tk.SE))
 
-
     # function: 按下歌曲
     def click_lan(self, language, rank):
         webbrowser.open_new_tab("https://www.youtube.com/results?search_query=" + language[rank*2 - 2] + "+" + language[rank*2 - 1])  # 開啟Youtube搜尋頁面
 
 ranking = Ranking()
 ranking.master.title("KKbox Ranking")
-ranking.master.geometry('-30-50')      # 視窗設在右下角
-ranking.master.attributes('-alpha', 1) # 不透明
-ranking.master.resizable(0, 0)         # 鎖定視窗大小
-ranking.configure(bg='Black')          # 背景顏色
-ranking.master.overrideredirect(True)  # 刪除標題欄
+ranking.master.geometry('-30-50')       # 視窗設在右下角
+ranking.master.attributes('-alpha', 1)  # 不透明
+ranking.master.resizable(0, 0)          # 鎖定視窗大小
+ranking.configure(bg='Black')           # 背景顏色
+ranking.master.overrideredirect(True)   # 刪除標題欄
 ranking.mainloop()
