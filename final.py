@@ -34,44 +34,35 @@ eng_rank = []
 jap_rank = []
 kor_rank = []
 
-# 獲得專輯照片&其他排名的歌名資料
-# 把下面的code插入在16行那邊
-# 目前我只做華語歌曲前十名的專輯照片網址
+topone_cover = []  # kkbox四語言的第一名專輯照片
 
-man_url = url + song_list[0]
-r_man = requests.get(man_url)
-soup = BeautifulSoup(r_man.text, 'html.parser')
-all_scripts = soup.find_all('script')
-song_scripts = all_scripts[-2].text[:-30000] # 後面一大段都不重要
-
-
-man_cover = []  # 前十名的專輯照片網址
-
-for i in range(10):
-
-    #處理專輯照片
-    start = song_scripts.find('small')
-    end = song_scripts.find('160x160.jpg')
-    cover_url = song_scripts[start+8:end+11]
-    cover_url = cover_url.replace('\\' , '')
-    man_cover.append(cover_url)
-
-    # 把文字檔精簡
-    song_scripts = song_scripts[end+12:]
 
 for o in (man_rank, eng_rank, jap_rank, kor_rank):
     song_index += 1
     song_url = url + song_list[song_index]
 
-    r = requests.get(song_url)
+    r = requests.get(song_url)  # 取得網址
 
     soup = BeautifulSoup(r.text, 'html.parser')
     attr = {'name': 'description'}
 
-    rank = soup.find_all('meta', attrs=attr)     # 找到html裡面的meta標籤
+    # 各語言第一名的專輯照片
+    cover_scripts = soup.find_all('script')
+    cover_scripts = cover_scripts[-2].text[:2000] # 後面一大段都不重要
+
+    cover_start = cover_scripts.find('small')
+    cover_end = cover_scripts.find('160x160.jpg')
+    cover_url = cover_scripts[cover_start+8:cover_end+11]
+    cover_url = cover_url.replace('\\' , '')
+    topone_cover.append(cover_url)
+
+
+    # 找到前五歌名和歌手
+    rank = soup.find_all('meta', attrs=attr)       # 找到html裡面的meta標籤
     rank_str = rank[0]['content']                  # 找到排行榜的部分
     rank_str = rank_str[(rank_str.find('：')+1):]  # 只抓取歌單的部分
     rank_list = rank_str.split('、')               # 把str轉成list
+
 
     # list中0,2,4,6,8為歌名; 1,3,5,7,9為歌手
     for i in rank_list:
@@ -91,6 +82,8 @@ for o in (man_rank, eng_rank, jap_rank, kor_rank):
     # 把前後有空格的整理乾淨
     for i in range(10):
         o[i] = o[i].strip()
+
+
 
 '''視窗'''
 class Ranking(tk.Frame):
