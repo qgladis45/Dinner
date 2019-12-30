@@ -165,7 +165,7 @@ class Ranking(tk.Frame):
 
     # function: 按下歌曲
     def click_lan(self, language, rank):
-        webbrowser.open_new_tab("https://www.youtube.com/results?search_query=" + language[rank*2 - 2] + "+" + language[rank*2 - 1])  # 開啟Youtube搜尋頁面
+        driver.get("https://www.youtube.com/results?search_query=" + language[rank*2 - 2] + "+" + language[rank*2 - 1])  # 開啟Youtube搜尋頁面
 
 
 wait = WebDriverWait(driver, 2000000000000000000000000000000, 0.1)
