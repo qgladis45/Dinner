@@ -10,7 +10,7 @@ from urllib.request import urlopen
 import io
 
 # 爬蟲
-url = "https://kma.kkbox.com/charts/daily/song?cate="
+kkbox_url = "https://kma.kkbox.com/charts/daily/song?cate="
 spotify_url = 'https://spotifycharts.com/regional/tw/daily/latest'
 
 song_list = ['297', '390', '308', '314']  # 華語man, 英文eng, 日文jap, 韓文kor
@@ -45,7 +45,7 @@ for i in rank_spotify:
 # kkbox的排名
 for o in (man_rank, eng_rank, jap_rank, kor_rank):
     song_index += 1
-    song_url = url + song_list[song_index]
+    song_url = kkbox_url + song_list[song_index]
 
     r = requests.get(song_url)  # 取得網址
 
@@ -70,7 +70,6 @@ for o in (man_rank, eng_rank, jap_rank, kor_rank):
 
     # list中0,2,4,6,8為歌名; 1,3,5,7,9為歌手
     for i in rank_list:
-        # rank = i.strip()
         title = i[:i.find('-')]       # 把歌名整理一下
         singer = i[(i.find('-')+1):]  # 把歌手整理一下
         if title.find('('):           # 如果歌名有(像是歌名的英文名稱)
@@ -98,7 +97,6 @@ class Ranking(tk.Frame):
         self.grid()
         self.create_widgets()
         self.click(man_rank, topone_cover[0])
-        self.spotifypic = tk.PhotoImage("C:\\Users\\User\\Desktop\\spotify-logo.jpg")
 
     # 建立主題按鈕&名次
     def create_widgets(self):

@@ -14,11 +14,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
-driver = webdriver.Chrome("C:\\Users\\User\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Python 3.7\\chromedriver")
+driver = webdriver.Chrome()
 driver.get("https://www.google.com/")
 
 # 爬蟲
-url = "https://kma.kkbox.com/charts/daily/song?cate="
+kkbox_url = "https://kma.kkbox.com/charts/daily/song?cate="
 spotify_url = 'https://spotifycharts.com/regional/tw/daily/latest'
 
 song_list = ['297', '390', '308', '314']  # 華語man, 英文eng, 日文jap, 韓文kor
@@ -53,7 +53,7 @@ for i in rank_spotify:
 # kkbox的排名
 for o in (man_rank, eng_rank, jap_rank, kor_rank):
     song_index += 1
-    song_url = url + song_list[song_index]
+    song_url = kkbox_url + song_list[song_index]
 
     r = requests.get(song_url)  # 取得網址
 
@@ -78,7 +78,6 @@ for o in (man_rank, eng_rank, jap_rank, kor_rank):
 
     # list中0,2,4,6,8為歌名; 1,3,5,7,9為歌手
     for i in rank_list:
-        # rank = i.strip()
         title = i[:i.find('-')]       # 把歌名整理一下
         singer = i[(i.find('-')+1):]  # 把歌手整理一下
         if title.find('('):           # 如果歌名有(像是歌名的英文名稱)
@@ -106,7 +105,7 @@ class Ranking(tk.Frame):
         self.grid()
         self.create_widgets()
         self.click(man_rank, topone_cover[0])
-        self.spotifypic = tk.PhotoImage("C:\\Users\\User\\Desktop\\spotify-logo.jpg")
+        self.master.overrideredirect(True)
 
     # 建立主題按鈕&名次
     def create_widgets(self):
@@ -136,8 +135,16 @@ class Ranking(tk.Frame):
         self.rank5.grid(row=6, column=0, padx=10, pady=5, sticky=(tk.NW+tk.SE))
 
         # 離開(button)
-        self.exitbut = tk.Button(self, width=2, text='Ⓧ', font=('微軟正黑體', 12), bg='Black', fg='Gray55', activebackground='Black', activeforeground='red', relief='flat', command=(lambda: self.quit()))
+        self.exitbut = tk.Button(self, width=2, text='▼', font=('微軟正黑體', 12), bg='Black', fg='Gray55', activebackground='Black', activeforeground='red', relief='flat', command=self.minimize)
         self.exitbut.grid(row=0, column=0, ipadx=10, sticky=tk.NW)
+        self.exitbut.bind("<Map>", self.show)
+    
+    def minimize(self):
+        self.master.overrideredirect(False)
+        self.master.iconify()
+        
+    def show(self, e):
+        self.master.overrideredirect(True)
 
     # function: 各主題的排行(button)
     def click(self, rank_name, cover_url):
@@ -165,20 +172,22 @@ class Ranking(tk.Frame):
 
     # function: 按下歌曲
     def click_lan(self, language, rank):
-        driver.get("https://www.youtube.com/results?search_query=" + language[rank*2 - 2] + "+" + language[rank*2 - 1])  # 開啟Youtube搜尋頁面
+        click_song = ("https://www.youtube.com/results?search_query=" + language[rank*2 - 2] + "+" + language[rank*2 - 1])
+        try:
+            driver.get(click_song)  # 開啟Youtube搜尋頁面
+        except:
+            webbrowser.open_new_tab(click_song)  # 如果chrome被關閉時還可以使用
 
 
-wait = WebDriverWait(driver, 2000000000000000000000000000000, 0.1)
-element = wait.until(EC.title_is(("YouTube")))  # element = true
+wait = WebDriverWait(driver, 200000000000000000000000000, 0.1)
+element = wait.until(EC.title_is(("YouTube")))
 
 ranking = Ranking()
 ranking.master.update()
-#ranking.master.deiconify()
-ranking.master.title("KKbox Ranking")
+ranking.master.title("Ktify Ranking")
 ranking.master.attributes('-topmost', 1)  # 視窗置頂
-ranking.master.geometry('-30-50')         # 視窗設在右下角
 ranking.master.attributes('-alpha', 1)    # 不透明
+ranking.master.geometry('-30-50')         # 視窗設在右下角
 ranking.master.resizable(0, 0)            # 鎖定視窗大小
 ranking.configure(bg='Black')             # 背景顏色
-ranking.master.overrideredirect(True)     # 刪除標題欄
 ranking.mainloop()
