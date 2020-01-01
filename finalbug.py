@@ -14,7 +14,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome("C:\\Users\\User\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Python 3.7\\chromedriver")
 driver.get("https://www.google.com/")
 
 # 爬蟲
@@ -173,11 +173,12 @@ element = wait.until(EC.title_is(("YouTube")))  # element = true
 
 ranking = Ranking()
 ranking.master.update()
-ranking.master.deiconify()
+#ranking.master.deiconify()
 ranking.master.title("KKbox Ranking")
-ranking.master.geometry('-30-50')       # 視窗設在右下角
-ranking.master.attributes('-alpha', 1)  # 不透明
-ranking.master.resizable(0, 0)          # 鎖定視窗大小
-ranking.configure(bg='Black')           # 背景顏色
-ranking.master.overrideredirect(True)   # 刪除標題欄
+ranking.master.attributes('-topmost', 1)  # 視窗置頂
+ranking.master.geometry('-30-50')         # 視窗設在右下角
+ranking.master.attributes('-alpha', 1)    # 不透明
+ranking.master.resizable(0, 0)            # 鎖定視窗大小
+ranking.configure(bg='Black')             # 背景顏色
+ranking.master.overrideredirect(True)     # 刪除標題欄
 ranking.mainloop()
