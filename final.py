@@ -161,9 +161,10 @@ class Ranking(tk.Frame):
 
 ranking = Ranking()
 ranking.master.title("KKbox Ranking")
-ranking.master.geometry('-30-50')       # 視窗設在右下角
-ranking.master.attributes('-alpha', 1)  # 不透明
-ranking.master.resizable(0, 0)          # 鎖定視窗大小
-ranking.configure(bg='Black')           # 背景顏色
-ranking.master.overrideredirect(True)   # 刪除標題欄
+ranking.master.geometry('-30-50')         # 視窗設在右下角
+ranking.master.attributes('-alpha', 1)    # 不透明
+ranking.master.attributes('-topmost', 1)  # 視窗置頂
+ranking.master.resizable(0, 0)            # 鎖定視窗大小
+ranking.configure(bg='Black')             # 背景顏色
+ranking.master.overrideredirect(True)     # 刪除標題欄 
 ranking.mainloop()
